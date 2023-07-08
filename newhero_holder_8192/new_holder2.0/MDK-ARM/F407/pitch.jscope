@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<JScopeProject>
+    <FileVersion major="1" minor="1" />
+    <Project>
+        <Configuration>
+            <JLink>
+                <Options IsRTTSession="0" IsRTTWithTimeStamp="1" SamplingPeriod="100" Connection="1" SerialNo="0" IP="" TargetDevice="unspecified" TargetInterface="SWD" InterfaceSpeed="4000" />
+            </JLink>
+            <ElfFile Name="E:\0_Fyt\2023hero\hero2023\newhero_holder_8192\new_holder2.0\MDK-ARM\F407\F407.axf" />
+            <DataFile Name="" />
+            <RawFile Name="" />
+            <Scope>
+                <Options TimeResolutionUs="1000000" />
+            </Scope>
+        </Configuration>
+        <Windows>
+            <Graph Show="1" />
+            <Watch Show="1" />
+        </Windows>
+        <SelectedSymbols>
+            <Symbol>
+                <Options Name="PitchRxAngle" Address="0x200000C8" Type="int" TypeID="12" Size="4" GraphColorRed="255" GraphColorGreen="215" GraphColorBlue="0" YMinSampled="0" YMaxSampled="1623868186" YAvgSampled="13482200" Offset="4" ShowInGraph="1" YOffset="200" IsAutoConfig="0" YResolution="2000" MaxValue="2000000000" File="..\Middlewares\Third_Party\SoftWare\holder.c" Scope="0" DrawStyle="0" />
+            </Symbol>
+            <Symbol>
+                <Options Name="PitchTarAngle" Address="0x200000C4" Type="int" TypeID="12" Size="4" GraphColorRed="0" GraphColorGreen="255" GraphColorBlue="0" YMinSampled="0" YMaxSampled="602958026" YAvgSampled="5006656" Offset="8" ShowInGraph="1" YOffset="200" IsAutoConfig="0" YResolution="2000" MaxValue="1000000000" File="..\Middlewares\Third_Party\SoftWare\holder.c" Scope="0" DrawStyle="0" />
+            </Symbol>
+        </SelectedSymbols>
+    </Project>
+</JScopeProject>
