@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
   * @file
-  * @author  sy,lj
+  * @author  ycz,sy,lj
   * @brief
   * @date
   ******************************************************************************
@@ -48,9 +48,9 @@ int16_t  v_right=0;
 
 uint16_t speedlim = 8000; //7500;
 uint8_t super_state    =  0;
-int16_t fmax_wheel_speed = 8000;/*< ×î´óÒÆ¶¯ËÙ¶È */
-int16_t fmax_spin_speed = 720; /*< ×î´óĞı×ªËÙ¶È */
-int16_t fmax_spin_static = 800;/*<×î´ó¶¨µãĞı×ªËÙ¶È*/
+int16_t fmax_wheel_speed = 8000;/*< æœ€å¤§ç§»åŠ¨é€Ÿåº¦ */
+int16_t fmax_spin_speed = 720; /*< æœ€å¤§æ—‹è½¬é€Ÿåº¦ */
+int16_t fmax_spin_static = 800;/*<æœ€å¤§å®šç‚¹æ—‹è½¬é€Ÿåº¦*/
 float acc_max = 2.5f;
 /* function ------------------------------------------------------------------*/
 double pp1=7.15,ii1=0.48,dd1=6.5;
@@ -91,19 +91,19 @@ void Chassis_GetMoveData(RemoteData_t RDMsg,HolderData_t HDMsg)
 //			ramp_Coeff += 3;
 	  if(Observer.Tx.DR16_Rate>15)
 		{
-			//Ğ±ÆÂ»º³å
+			//æ–œå¡ç¼“å†²
 			Chassis.RampMoveData.Front = Ramp_function(66, Chassis.MoveData.Front, Chassis.RampMoveData.Front, ramp_Coeff);
 			Chassis.RampMoveData.Right = Ramp_function(66, Chassis.MoveData.Right, Chassis.RampMoveData.Right, ramp_Coeff);
 //      Chassis.RampMoveData.Front = Chassis.MoveData.Front;
 //			Chassis.RampMoveData.Right = Chassis.MoveData.Right;
 			Chassis.RampMoveData.ClockWise = Chassis.MoveData.ClockWise;
-			//ÔË¶¯Ñ§½âËã
+			//è¿åŠ¨å­¦è§£ç®—
 			Chassis.M3508[0].TarSpeed = (int16_t)(  Chassis.RampMoveData.Right / GAIN_I + Chassis.RampMoveData.Front / GAIN_J + Chassis.RampMoveData.ClockWise / GAIN_K);
       Chassis.M3508[1].TarSpeed = (int16_t)(  Chassis.RampMoveData.Right / GAIN_I - Chassis.RampMoveData.Front / GAIN_J + Chassis.RampMoveData.ClockWise / GAIN_K);
       Chassis.M3508[2].TarSpeed = (int16_t)( -Chassis.RampMoveData.Right / GAIN_I + Chassis.RampMoveData.Front / GAIN_J + Chassis.RampMoveData.ClockWise / GAIN_K);
       Chassis.M3508[3].TarSpeed = (int16_t)( -Chassis.RampMoveData.Right / GAIN_I - Chassis.RampMoveData.Front / GAIN_J + Chassis.RampMoveData.ClockWise / GAIN_K);
 			
-			//½âËãËÙ¶È°´±ÈÀıÏŞ·ù
+			//è§£ç®—é€Ÿåº¦æŒ‰æ¯”ä¾‹é™å¹…
 			for(int i=0;i<4;i++)
 			{
 				if(abs(Chassis.M3508[i].TarSpeed) > maxspeed)
@@ -128,7 +128,7 @@ void Chassis_LPfOut(void)
     for(i=0;i<4;i++) 
     {
       Chassis.M3508[i].OutputLpf = 0.75 * Chassis.M3508[i].Output + 0.25 * Chassis.M3508[i].OutputLpf;
-			//PID¼ÆËãÊä³ö³õ²½ÏŞ·ù
+			//PIDè®¡ç®—è¾“å‡ºåˆæ­¥é™å¹…
 			if(Chassis.M3508[i].OutputLpf>=16000)
 				Chassis.M3508[i].OutputLpf=16000;
 			if(Chassis.M3508[i].OutputLpf<=-16000)
@@ -200,7 +200,7 @@ static void superCapCanTransmit(void)
 }
 
 /**
-  * @brief  È¡¾ø¶ÔÖµ
+  * @brief  å–ç»å¯¹å€¼
   * @param  num
   * @retval |num|
   * @attention  
@@ -214,11 +214,11 @@ int16_t absFloat(int16_t num)
 
 void Chassis_PowerControl(void)
 {
-	//³¬¼¶µçÈİ¿ØÖÆÖÜÆÚ
+	//è¶…çº§ç”µå®¹æ§åˆ¶å‘¨æœŸ
 	static uint8_t tick = 0;
 	
-	//¸ù¾İ»º³åÄÜÁ¿ÏŞ·ù
-	int16_t remain_energy = JUDGE_u16GetRemainEnergy();//»º³åÄÜÁ¿
+	//æ ¹æ®ç¼“å†²èƒ½é‡é™å¹…
+	int16_t remain_energy = JUDGE_u16GetRemainEnergy();//ç¼“å†²èƒ½é‡
 	uint8_t RemainParam = 7;
 	float P=1.0;
 	int32_t sum_output = 0;
@@ -226,7 +226,7 @@ void Chassis_PowerControl(void)
 //	tick ++;
 //	if(tick == 20)
 //	{
-		//µçÈİ±£»¤ Ö»ÒªµçÈİµÄµçÈİÖµµÍÓÚÄ³Öµ£¬Á¢¿Ì¹Ø±ÕµçÈİ
+		//ç”µå®¹ä¿æŠ¤ åªè¦ç”µå®¹çš„ç”µå®¹å€¼ä½äºæŸå€¼ï¼Œç«‹åˆ»å…³é—­ç”µå®¹
 //		if(Control_state.open_cap.cr_state == 1)
 //		{
 //			if(super_state == CHASSIS_NORMAL)
@@ -241,27 +241,27 @@ void Chassis_PowerControl(void)
 		{
 			super_state = CHASSIS_NORMAL;
 		}
-		//¸Õ¿ª»ú »ò ³¬¼¶µçÈİµçÈİÖµ»Ö¸´µ½Ä³Öµ£¬ÖØĞÂ¿ªÆôµçÈİ
+		//åˆšå¼€æœº æˆ– è¶…çº§ç”µå®¹ç”µå®¹å€¼æ¢å¤åˆ°æŸå€¼ï¼Œé‡æ–°å¼€å¯ç”µå®¹
 		if(Chassis.SuperCap.cap_vol >= 15000 && super_state == CHASSIS_NORMAL)
 		{
 			super_state = CHASSIS_SUPERCAP;
 		}
 		
-		//·¢ËÍ³¬¼¶µçÈİ¿ØÖÆÊı¾İ
+		//å‘é€è¶…çº§ç”µå®¹æ§åˆ¶æ•°æ®
 		superCapCanTransmit();
 //		tick = 0;
 //	}
-	/*´ó½»¹¦ÂÊ¿ØÖÆ
-	¸ù¾İ²ÃÅĞÏµÍ³·´À¡µÄ60j»º³åÄÜÁ¿ ÏŞÖÆµç»úÊä³öOutput
-	ÔÚÊ£Óà»º³åÄÜÁ¿Ğ¡ÓÚ50jÊ±½øĞĞÏŞÖÆ
-	ÏŞÖÆËÄ¸öµç»úµÄÊä³öÁ¿Ö®ºÍ<=Ê£ÓàÄÜÁ¿µÄÆ½·½*ÏµÊıP
+	/*å¤§äº¤åŠŸç‡æ§åˆ¶
+	æ ¹æ®è£åˆ¤ç³»ç»Ÿåé¦ˆçš„60jç¼“å†²èƒ½é‡ é™åˆ¶ç”µæœºè¾“å‡ºOutput
+	åœ¨å‰©ä½™ç¼“å†²èƒ½é‡å°äº50jæ—¶è¿›è¡Œé™åˆ¶
+	é™åˆ¶å››ä¸ªç”µæœºçš„è¾“å‡ºé‡ä¹‹å’Œ<=å‰©ä½™èƒ½é‡çš„å¹³æ–¹*ç³»æ•°P
 	*/
 	if(remain_energy < 40)
 	{
 		for(int i=0;i<4;i++)
 			sum_output += abs(Chassis.M3508[i].Output);
-		/*ÈôËÄ¸öµç»úµÄÊä³öÁ¿Ö®ºÍ>Ê£ÓàÄÜÁ¿µÄÆ½·½*ÏµÊı
-		µÈ±ÈÀıËõ·ÅËÄ¸öÊä³öÖµ
+		/*è‹¥å››ä¸ªç”µæœºçš„è¾“å‡ºé‡ä¹‹å’Œ>å‰©ä½™èƒ½é‡çš„å¹³æ–¹*ç³»æ•°
+		ç­‰æ¯”ä¾‹ç¼©æ”¾å››ä¸ªè¾“å‡ºå€¼
 		*/
 		if(sum_output > (int32_t)remain_energy * (int32_t)remain_energy * (int32_t)RemainParam)
 			P = (float)sum_output/(float)((int32_t)remain_energy * (int32_t)remain_energy * (int32_t)RemainParam);
