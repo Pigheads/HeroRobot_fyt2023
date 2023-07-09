@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
   * @file
-  * @author  sy,lj
+  * @author  ycz,lj
   * @brief
   * @date
   ******************************************************************************
@@ -135,7 +135,7 @@ void Chassis_CanTransmit(void)
 				Chassis.CanData[4]=(uint8_t)(Chassis.MoveData.ClockWise>>8);
 				Chassis.CanData[5]=(uint8_t)(Chassis.MoveData.ClockWise);
 				Chassis.CanData[7]=(uint8_t)	Observer.Tx.DR16_Rate;		
-				Chassis.Key_SUPERCAP[0]		= Control_state.open_cap.cr_state;   //shift¿ªÆô³¬¼¶µçÈÝ
+				Chassis.Key_SUPERCAP[0]		= Control_state.open_cap.cr_state;   //shiftå¼€å¯è¶…çº§ç”µå®¹
 		}   
     else
     {
@@ -189,7 +189,7 @@ void Chassis_PowerControl(void)
 }
 
 uint16_t temp_power=5500;
-void CanTranPower(void)                                    //¹¦ÂÊ¿ØÖÆ
+void CanTranPower(void)                                    //åŠŸçŽ‡æŽ§åˆ¶
 {
 	 if(Observer.Tx.DR16_Rate>15)
    {
@@ -219,12 +219,12 @@ static void superCapCanTransmit(void)
 		
 		CAN1_Transmit(0x210, Chassis.SuperCap.can_data);
 }
-void Chassis_kb_control(int16_t RxAngle)                      //¼üÅÌ¿ØÖÆ 
+void Chassis_kb_control(int16_t RxAngle)                      //é”®ç›˜æŽ§åˆ¶ 
 {
 		RxAngle = Holder.Yaw._0x209.Rx.Angle; 
 		for(int i=0;i<4;i++)
 		{
-			//×èÁ¦¼õËÙ
+			//é˜»åŠ›å‡é€Ÿ
 			if(Control_state.direction[i]==0)
 			{
 //				Control_state.running_speed[i] = 0;
@@ -248,7 +248,7 @@ void Chassis_kb_control(int16_t RxAngle)                      //¼üÅÌ¿ØÖÆ
 	{
 		switch(Control_state.spin_state.cr_state)
 	 {
-		case 1:				//¸úËæÄ£Ê½
+		case 1:				//è·Ÿéšæ¨¡å¼
 		   Chassis.MoveData.Front      =        Control_state.running_speed[0]-Control_state.running_speed[1];
 		   Chassis.MoveData.Right      =        Control_state.running_speed[3]-Control_state.running_speed[2];
 		 if(-5<=Chassis.MoveData.Front&&Chassis.MoveData.Front<=5&&-5<=Chassis.MoveData.Right&&Chassis.MoveData.Right<=5)
@@ -288,7 +288,7 @@ void Chassis_kb_control(int16_t RxAngle)                      //¼üÅÌ¿ØÖÆ
   }
 	else
 	{
-		//Ð¡ÍÓÂÝÄ£Ê½
+		//å°é™€èžºæ¨¡å¼
      v_front =  Control_state.running_speed[0]-Control_state.running_speed[1];
 	   v_right = -Control_state.running_speed[3]+Control_state.running_speed[2];
 		 Chassis.MoveData.Front      =   (int16_t)((float)v_front*cos_x(RxAngle) + (float)v_right*sin_x(RxAngle));	
@@ -299,9 +299,9 @@ void Chassis_kb_control(int16_t RxAngle)                      //¼üÅÌ¿ØÖÆ
 	}
 }
 
-void Chassis_re_control(int16_t RxAngle,RemoteData_t RDMsg)                     //Ò£¿ØÆ÷¿ØÖÆ
+void Chassis_re_control(int16_t RxAngle,RemoteData_t RDMsg)                     //é¥æŽ§å™¨æŽ§åˆ¶
 {
-	RxAngle = Holder.Yaw._0x209.Rx.Angle;                            //½«Æ«º½µç»ú½Ç¶È¸³Öµ£¬ÁíÍâµØ·½µÄ¸³Öµ²»ÖªÎªºÎÎÞÐ§  
+	RxAngle = Holder.Yaw._0x209.Rx.Angle;                            //å°†åèˆªç”µæœºè§’åº¦èµ‹å€¼ï¼Œå¦å¤–åœ°æ–¹çš„èµ‹å€¼ä¸çŸ¥ä¸ºä½•æ— æ•ˆ  
 	switch(Control_state.Remote_S2)
 	{
 		case 1:
@@ -340,7 +340,7 @@ void Chassis_re_control(int16_t RxAngle,RemoteData_t RDMsg)                     
 			Chassis.MoveData.Right      =      0.4*RDMsg.Ch2;
 			break;
 		}
-		case 2:                                                     //Ð¡ÍÓÂÝÄ£Ê½¸Ä½ø
+		case 2:                                                     //å°é™€èžºæ¨¡å¼æ”¹è¿›
 		{					
 			v_front =  RDMsg.Ch3;
 			v_right =  RDMsg.Ch2;
@@ -354,7 +354,7 @@ void Chassis_re_control(int16_t RxAngle,RemoteData_t RDMsg)                     
 	}
 }
 
-void Chassis_Process(RemoteData_t RDMsg,HolderData_t HDMsg)           //´¦Àí¹ý³Ì
+void Chassis_Process(RemoteData_t RDMsg,HolderData_t HDMsg)           //å¤„ç†è¿‡ç¨‹
 {
 		Chassis_GetMoveData(RDMsg,HDMsg);
 		Chassis_CanTransmit();
