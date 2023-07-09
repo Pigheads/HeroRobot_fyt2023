@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
   * @file    
-  * @author  sy
+  * @author  ycz,lj
   * @brief
   * @date     
   ******************************************************************************
@@ -27,14 +27,14 @@
 /* typedef -------------------------------------------------------------------*/
 /* define --------------------------------------------------------------------*/
 /* variables -----------------------------------------------------------------*/
-vData_t vData = {0};	//ÊÓ¾õÎ»ÖÃÊı¾İ
+vData_t vData = {0};	//è§†è§‰ä½ç½®æ•°æ®
 
-float auto_yaw_speed_kp = -0, auto_yaw_accel_kp = 0;	//ËÙ¶ÈÓë¼ÓËÙ¶ÈµÄÔ¤²â±ÈÀı
-float feed_pre_angle_yaw, predict_angle_yaw;			//Ô¤²âÆ«ÒÆÁ¿
+float auto_yaw_speed_kp = -0, auto_yaw_accel_kp = 0;	//é€Ÿåº¦ä¸åŠ é€Ÿåº¦çš„é¢„æµ‹æ¯”ä¾‹
+float feed_pre_angle_yaw, predict_angle_yaw;			//é¢„æµ‹åç§»é‡
 float last_angle;
 float auto_yaw_speed;
 
-//ÊÓ¾õ¿¨¶ûÂü½á¹¹Ìå
+//è§†è§‰å¡å°”æ›¼ç»“æ„ä½“
 kalman1_state vision_dis_pitch_offset;
 kalman1_state vision_absolute_Yaw_Kal, vision_absolute_Pitch_Kal;
 kalman1_state vision_angleY_KF, vision_angleP_KF;
@@ -56,7 +56,7 @@ void Vision_RecvData(uint8_t byte)
             memcpy(&vData.Pos, &vData.buf[vData.index - 13], 12);
 				/**	x pitch 
 					* y yaw
-					* z ¾àÀë
+					* z è·ç¦»
 					*/
             vData.index = 0;
         }
@@ -90,22 +90,22 @@ void Vision_SendData(void)
     switch(color_state)
     {
         case 0:
-            tmp_data[1] = 0x00; /*< ºìÉ«*/
+            tmp_data[1] = 0x00; /*< çº¢è‰²*/
         break;
 
         case 1:
-            tmp_data[1] = 0x01; /*< À¶É«*/
+            tmp_data[1] = 0x01; /*< è“è‰²*/
         break;
         
         default:
-            tmp_data[1] = 0x00; /*< ºìÉ«*/
+            tmp_data[1] = 0x00; /*< çº¢è‰²*/
         break;
     }
 
-    /* Ö¡Í·Ö¡Î² */
+    /* å¸§å¤´å¸§å°¾ */
     tmp_data[0] = 0xFF;
 //		tmp_data[1] = 0x01;
-		/* ×Óµ¯µ¯ËÙ */
+		/* å­å¼¹å¼¹é€Ÿ */
 		float shoot_speed = 16.0;
 		memcpy(&tmp_data[2], &shoot_speed, sizeof(shoot_speed));
 //		float pitch = Holder.Pitch._0x20A.Rx.Angle;
@@ -131,10 +131,10 @@ void Vision_SendData(void)
 		
 	  HAL_UART_Transmit_IT(&huart6, tmp_data, 16);
 }
-// kalmanÂË²¨
+// kalmanæ»¤æ³¢
 /**
   * @brief    average_init
-  * @note    »¬¶¯ÂË²¨Æ÷³õÊ¼»¯£¬ÉèÖÃ³¤¶È
+  * @note    æ»‘åŠ¨æ»¤æ³¢å™¨åˆå§‹åŒ–ï¼Œè®¾ç½®é•¿åº¦
   * @param  None
   * @retval None
   * @author  RobotPilots
@@ -159,7 +159,7 @@ void average_init(moving_Average_Filter *Aver, uint8_t lenth)
 
 /**
   * @brief    average_add
-  * @note    »¬¶¯Æ½¾ùÂË²¨Æ÷½øÈë¶ÓÁĞ£¬ÏÈ½øÏÈ³ö
+  * @note    æ»‘åŠ¨å¹³å‡æ»¤æ³¢å™¨è¿›å…¥é˜Ÿåˆ—ï¼Œå…ˆè¿›å…ˆå‡º
   * @param  None
   * @retval None
   * @author  RobotPilots
@@ -183,7 +183,7 @@ void average_add(moving_Average_Filter *Aver, float add_data)
 
 /**
   * @brief    average_get
-  * @note    »ñÈ¡µÚÇ°pre´ÎµÄÊı¾İ£¬Èç¹û³¬³öÊı×é³¤¶ÈÔòÈ¡¼ÇÂ¼µÄ×îÔçµÄÊı¾İ
+  * @note    è·å–ç¬¬å‰preæ¬¡çš„æ•°æ®ï¼Œå¦‚æœè¶…å‡ºæ•°ç»„é•¿åº¦åˆ™å–è®°å½•çš„æœ€æ—©çš„æ•°æ®
   * @param  None
   * @retval None
   * @author  RobotPilots
@@ -221,7 +221,7 @@ float average_get(moving_Average_Filter *Aver, uint16_t pre)
 
 void vision_init()
 {
-	kalman1_init(&vision_absolute_Yaw_Kal, 0.1, 10);//10);	//¾ø¶Ô½Ç¶ÈµÄ¿¨¶ûÂüÂË²¨Æ÷
+	kalman1_init(&vision_absolute_Yaw_Kal, 0.1, 10);//10);	//ç»å¯¹è§’åº¦çš„å¡å°”æ›¼æ»¤æ³¢å™¨
 	kalman1_init(&vision_absolute_Pitch_Kal,1, 20);
 	kalman1_init(&vision_dis_pitch_offset, 1, 30);
 	
@@ -243,13 +243,13 @@ void vision_init()
 
 void Holder_CoordinateTransform(void)
 {
-	//±ä»»µ½Ö±½Ç×ø±êÏµ
+	//å˜æ¢åˆ°ç›´è§’åæ ‡ç³»
 	float x,y,z;
 	x = -vData.Pos.z * sinf(vData.Pos.y*PI/180.0f);
 	y = vData.Pos.z * cosf(vData.Pos.y*PI/180.0f) * sin(vData.Pos.x*PI/180.0f);
 	z = vData.Pos.z * cosf(vData.Pos.y*PI/180.0f) * cosf(vData.Pos.x*PI/180.0f);
 	
-	//ÏòÁ¿Ïà¼Ó
+	//å‘é‡ç›¸åŠ 
 	x-=CAMERA_X_DEVIATION;
 	y-=CAMERA_Y_DEVIATION;
 	z-=CAMERA_Z_DEVIATION;
@@ -261,13 +261,13 @@ void Holder_CoordinateTransform(void)
 
 float yaw_angle_raw;
 float auto_yaw_angle =0,yaw_speed_raw=0;
-float predict_angle_yaw, predict_angle_pitch, predict_angle_distance;	//Ô¤²â
+float predict_angle_yaw, predict_angle_pitch, predict_angle_distance;	//é¢„æµ‹
 void vision_predict(void)
 {
 	yaw_angle_raw = vData.Pos.x*8192.0f/360.0f + vData.cur_gyro_yaw;
 
-	//µ÷ÊÔÊ±Ö÷Òª¿´¾ø¶Ô½Ç¶ÈÊÇ·ñÓĞ±ä»¯£¬ÀíÏëÇé¿öÏÂ£¬Ä¿±ê²»¶¯½âËã³öÀ´µÄ½á¹ûÓ¦¸ÃÊÇ²»±äµÄ
-	//¾ø¶Ô½Ç¶ÈÂË²¨
+	//è°ƒè¯•æ—¶ä¸»è¦çœ‹ç»å¯¹è§’åº¦æ˜¯å¦æœ‰å˜åŒ–ï¼Œç†æƒ³æƒ…å†µä¸‹ï¼Œç›®æ ‡ä¸åŠ¨è§£ç®—å‡ºæ¥çš„ç»“æœåº”è¯¥æ˜¯ä¸å˜çš„
+	//ç»å¯¹è§’åº¦æ»¤æ³¢
 
 	average_add(&vision_angleY_MF, yaw_angle_raw);
 	
@@ -275,11 +275,11 @@ void vision_predict(void)
 	
 	average_add(&vision_RawangleY_MF, auto_yaw_angle);
 	
-	float yaw_speed_raw =  (auto_yaw_angle - average_get(&vision_RawangleY_MF, 5))*10.0f;//ÏÈÂË²¨ÔÙÇóËÙ¶È
+	float yaw_speed_raw =  (auto_yaw_angle - average_get(&vision_RawangleY_MF, 5))*10.0f;//å…ˆæ»¤æ³¢å†æ±‚é€Ÿåº¦
 	
 	last_angle = auto_yaw_angle;
 	
-	if(vData.Pos.z == -1)//¶ªÊ§ºóÖØ×°ÔØ0£¬±ÜÃâËÙ¶ÈÍ»±ä
+	if(vData.Pos.z == -1)//ä¸¢å¤±åé‡è£…è½½0ï¼Œé¿å…é€Ÿåº¦çªå˜
 	{
 		for(int i = 0; i<vision_speedY_MF.lenth; i++)
 		{
@@ -291,13 +291,13 @@ void vision_predict(void)
 	
 	auto_yaw_speed = kalman1_filter(&vision_speedY_KF, yaw_speed_raw);
 	
-	auto_yaw_speed = LIMIT(auto_yaw_speed,-500,500);//Ô¤²âÁ¿ÏŞ·ù	
+	auto_yaw_speed = LIMIT(auto_yaw_speed,-500,500);//é¢„æµ‹é‡é™å¹…	
 	
 	feed_pre_angle_yaw = auto_yaw_speed + auto_yaw_angle;
 	
 	
 
-	//ÆÕÍ¨Ô¤²â
+	//æ™®é€šé¢„æµ‹
 //	predict_angle_yaw = predict_angle_yaw+feed_pre_angle_yaw;
 	predict_angle_yaw =  kalman1_filter(&vision_absolute_Yaw_Kal, feed_pre_angle_yaw);	
 
