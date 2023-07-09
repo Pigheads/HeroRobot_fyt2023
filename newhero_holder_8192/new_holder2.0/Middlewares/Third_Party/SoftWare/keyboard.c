@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
   * @file
-  * @author  lj
+  * @author  ycz,lj
   * @brief
   * @date
   ******************************************************************************
@@ -51,7 +51,7 @@ void keyboard_state_judge(RemoteData_t RDMsg,HolderData_t HDMsg)
 {
  if(Observer.Tx.DR16_Rate>15)
  {
-	//°´¼ü¶Ì°´
+	//æŒ‰é”®çŸ­æŒ‰
 	state_switch(&Control_state.spin_state,RDMsg.KeyBoard.ctrl);
 	state_switch(&Control_state.spin_move,RDMsg.KeyBoard.v);
 	state_switch(&Control_state.shoot_lock,RDMsg.KeyBoard.g);
@@ -61,9 +61,9 @@ void keyboard_state_judge(RemoteData_t RDMsg,HolderData_t HDMsg)
 	Angle_adjust(&Control_state.angle_e,RDMsg.KeyBoard.e);
 	Angle_adjust(&Control_state.angle_z,RDMsg.KeyBoard.z);
 	Angle_adjust(&Control_state.angle_c,RDMsg.KeyBoard.c);
-	//shift¿ªÆô³¬¼¶µçÈİ
+	//shiftå¼€å¯è¶…çº§ç”µå®¹
 	state_switch(&Control_state.open_cap,RDMsg.KeyBoard.shift);
-	//°´¼ü³¤°´
+	//æŒ‰é”®é•¿æŒ‰
 	Control_state.direction[0]=RDMsg.KeyBoard.w;
 	Control_state.direction[1]=RDMsg.KeyBoard.s;
 	Control_state.direction[2]=RDMsg.KeyBoard.a;
@@ -98,7 +98,7 @@ void keyboard_state_judge(RemoteData_t RDMsg,HolderData_t HDMsg)
 
 void state_switch(switchable_t *switchable,uint8_t input_pin)
 {
-	//°´Ò»ÏÂËÉ¿ª
+	//æŒ‰ä¸€ä¸‹æ¾å¼€
 	  switch(switchable->pin_state)
 		{
 			case 0:
