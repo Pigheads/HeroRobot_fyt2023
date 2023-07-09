@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
   * @file    
-  * @author  sy
+  * @author  
   * @brief   
   * @date     
   ******************************************************************************
@@ -79,7 +79,7 @@ void Holder_LPfOut(void);
 void Holder_CanTransmit(void);
 void HolderMsg_Process(RemoteData_t RDMsg,HolderData_t HDMsg);
 
-float Fall_measurement(float target_angle,float pitch_angle,float distance); //ÏÂ×¹²¹³¥
+float Fall_measurement(float target_angle,float pitch_angle,float distance); //ÃÃ‚Ã—Â¹Â²Â¹Â³Â¥
 #ifdef __cplusplus
 }
 #endif
