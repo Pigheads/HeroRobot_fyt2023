@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
   * @file    
-  * @author  sy,lj
+  * @author  ycz,sy,lj
   * @brief
   * @date     
   ******************************************************************************
@@ -19,17 +19,17 @@
   */
 	
 /*
-  1.ÔÆÌ¨¸úËæÄ£Ê½Í£Ö¹Ê±»áÆ«ÒÆ
-  2.µ×ÅÌ²»Ó²£¬²¦µ¯Á¦Ì«´óÊ±»áÓ°Ïìµ×ÅÌ£¨´ı²âÊÔ£©
-  3.Ãé×¼Ä£Ê½×óÓÒÒÆ¶¯²»¾ù
+  1.äº‘å°è·Ÿéšæ¨¡å¼åœæ­¢æ—¶ä¼šåç§»
+  2.åº•ç›˜ä¸ç¡¬ï¼Œæ‹¨å¼¹åŠ›å¤ªå¤§æ—¶ä¼šå½±å“åº•ç›˜ï¼ˆå¾…æµ‹è¯•ï¼‰
+  3.ç„å‡†æ¨¡å¼å·¦å³ç§»åŠ¨ä¸å‡
 	
-	¸Ä½ø·½Ïò£º
-	1.r¼üÃé×¼Ä£Ê½¿ªÆôË²¼ä¼ÇÂ¼µ±Ç°ÔÆÌ¨½Ç¶È×÷ÎªÄ¿±êÖµ£¬¸ÄÎªÁíÒ»Ì×PID¿ØÖÆ£¬Ëø¶¨µ±Ç°½Ç¶ÈÉä»÷£¬Òª×öµ½Éä»÷Ê±·½Ïò²»Æ«£¬Ö÷Òª´òÇ°ÉÚÕ¾ºÍ»ùµØ¡£
-	2.³¢ÊÔ½â¾ö¸úËæÄ£Ê½ÏÂÔÆÌ¨ÄªÃûÆ«ÒÆµÄÎÊÌâ¡£
-	3.µõÉä²âÊÔ£¬»­UI£¬ÒªÓĞÉä±í¡£
-	4.·ÉÆÂ¹¦ÄÜ±àĞ´ºÍ²âÊÔ£¨¸ù¾İÍÓÂİÒÇÆ«½Ç¼ÓËÙ£©¡£
-	5.ÔÚºóĞø²âÊÔÖĞÊ±¿Ì×¢ÒâÓĞÎŞ¿¨µ¯£¬Á¬·¢ÎÊÌâ£¬ËæÊ±¸Ä½ø¡£
-	6.×ÔÃéµÄ¸Ä½ø£¬¸ú×ÙÎÈ¶¨ĞÔºÍ¿É¿ØĞÔ¡£
+	æ”¹è¿›æ–¹å‘ï¼š
+	1.ré”®ç„å‡†æ¨¡å¼å¼€å¯ç¬é—´è®°å½•å½“å‰äº‘å°è§’åº¦ä½œä¸ºç›®æ ‡å€¼ï¼Œæ”¹ä¸ºå¦ä¸€å¥—PIDæ§åˆ¶ï¼Œé”å®šå½“å‰è§’åº¦å°„å‡»ï¼Œè¦åšåˆ°å°„å‡»æ—¶æ–¹å‘ä¸åï¼Œä¸»è¦æ‰“å‰å“¨ç«™å’ŒåŸºåœ°ã€‚
+	2.å°è¯•è§£å†³è·Ÿéšæ¨¡å¼ä¸‹äº‘å°è«ååç§»çš„é—®é¢˜ã€‚
+	3.åŠå°„æµ‹è¯•ï¼Œç”»UIï¼Œè¦æœ‰å°„è¡¨ã€‚
+	4.é£å¡åŠŸèƒ½ç¼–å†™å’Œæµ‹è¯•ï¼ˆæ ¹æ®é™€èºä»ªåè§’åŠ é€Ÿï¼‰ã€‚
+	5.åœ¨åç»­æµ‹è¯•ä¸­æ—¶åˆ»æ³¨æ„æœ‰æ— å¡å¼¹ï¼Œè¿å‘é—®é¢˜ï¼Œéšæ—¶æ”¹è¿›ã€‚
+	6.è‡ªç„çš„æ”¹è¿›ï¼Œè·Ÿè¸ªç¨³å®šæ€§å’Œå¯æ§æ€§ã€‚
 	
 */
 
@@ -53,10 +53,10 @@ int16_t pitch_x=0;
 int16_t Aim_Angle_Yaw=0;
 int16_t Aim_Angle_Pitch=0;
 
-float temp_kp_p[3]={0.1,0.09,0.08};//¸©ÑöÈı¶ÎÊ½
+float temp_kp_p[3]={0.1,0.09,0.08};//ä¿¯ä»°ä¸‰æ®µå¼
 float temp_err_p[3]={50,150,300};
 
-float temp_kp_y[4]={0.76,0.9,1.0};//Æ«º½Èı¶ÎÊ½
+float temp_kp_y[4]={0.76,0.9,1.0};//åèˆªä¸‰æ®µå¼
 float temp_err_y[4]={20,35,90};
 /* function -----------------------------------------------------------------*/
 //int debuger_kp=350,debuger_ki=64,debuger_kd=77;
@@ -169,16 +169,16 @@ void Holder_PidRun(void)
 {
 	static uint8_t ticks = 0;
 	ticks++;
-//      Holder_Pi_Tunning(3,4.2,0,0,&Holder.Yaw.PidAngle); //±ä²ÎÊıPID ÔÆÌ¨Æ«º½
-	if(ticks == 5)	//Î»ÖÃ»·¿ØÖÆ10ms£¬ËÙ¶È»·2ms
+//      Holder_Pi_Tunning(3,4.2,0,0,&Holder.Yaw.PidAngle); //å˜å‚æ•°PID äº‘å°åèˆª
+	if(ticks == 5)	//ä½ç½®ç¯æ§åˆ¶10msï¼Œé€Ÿåº¦ç¯2ms
 	{
 		ticks = 0;
-		Holder.Yaw._0x209.TarSpeed=(int16_t)pid_absolute_threesection_update(Holder.Yaw._0x209.TarAngleLpf,Holder.Yaw.Rx.Angle,&Holder.Yaw.PIDAngle); //Èı¶Î¾ø¶ÔÊ½½Ç¶È»·
+		Holder.Yaw._0x209.TarSpeed=(int16_t)pid_absolute_threesection_update(Holder.Yaw._0x209.TarAngleLpf,Holder.Yaw.Rx.Angle,&Holder.Yaw.PIDAngle); //ä¸‰æ®µç»å¯¹å¼è§’åº¦ç¯
 	}
 	Holder.Yaw._0x209.Output=(int16_t)pid_antiintegral_update(Holder.Yaw._0x209.TarSpeed,Holder.Yaw.Rx.Speed,&Holder.Yaw.PidSpeed);
 	TarAngle = Holder.Yaw._0x209.TarAngle;
 	RxAngle = Holder.Yaw.Rx.Angle;
-//      Holder.Yaw._0x209.TarSpeed=(int16_t)pid_antiintegral_update(Holder.Yaw._0x209.TarAngleLpf,Holder.Yaw.Rx.Angle,&Holder.Yaw.PidAngle); //¿¹»ı·Ö±¥ºÍ¾ø¶ÔÊ½½Ç¶È»·
+//      Holder.Yaw._0x209.TarSpeed=(int16_t)pid_antiintegral_update(Holder.Yaw._0x209.TarAngleLpf,Holder.Yaw.Rx.Angle,&Holder.Yaw.PidAngle); //æŠ—ç§¯åˆ†é¥±å’Œç»å¯¹å¼è§’åº¦ç¯
 //  	  Holder.Yaw.Output=(int16_t)pid_antiintegral_update(Holder.Yaw._0x209.TarSpeed,Holder.Yaw.Rx.Speed,&Holder.Yaw.PidSpeed);      
 
 }
