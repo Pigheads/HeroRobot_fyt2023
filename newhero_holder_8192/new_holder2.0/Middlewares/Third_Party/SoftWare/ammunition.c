@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
   * @file    
-  * @author  sy£¬lj
+  * @author  yczï¼Œlj
   * @brief
   * @date     
   ******************************************************************************
@@ -148,7 +148,7 @@ void Ammunition_re_control(void)
 			 }
 		if((Control_state.SingleShoot==0)&&(Control_state.HeatPermit==0)&&(Control_state.ShootBlock==0)&&(Control_state.Shootpermit==1))
 		{
-			//·À¶¶ µÃµ½flag
+			//é˜²æŠ– å¾—åˆ°flag
 			Ammunition_State(Control_state.Remote_Wheel>=330||Control_state.Remote_Wheel<=-330);
 			if((abs(vData.Pos.y) <= 1 && abs(vData.Pos.x) <= 1))
 				Control_state.shoot_or_not = 1;
@@ -156,16 +156,16 @@ void Ammunition_re_control(void)
 //			else 
 //				flag = 0;
 			if(flag==1)
-				 Control_state.shoot_or_not = 1;                   //¿ÉÒÔ·¢µ¯ 
+				 Control_state.shoot_or_not = 1;                   //å¯ä»¥å‘å¼¹ 
 			 else
-				 Control_state.shoot_or_not = 0;                   //²»ÄÜ·¢µ¯ 
+				 Control_state.shoot_or_not = 0;                   //ä¸èƒ½å‘å¼¹ 
 		}
 		else if(Control_state.ShootBlock==1)
 	  {
 			 temp_reverse++;
 			 if(temp_reverse<=70)
 			 {
-				 Control_state.block_and_reverse = 1;							//·´×ª
+				 Control_state.block_and_reverse = 1;							//åè½¬
 			 }
 			 else
 			 {
@@ -186,7 +186,7 @@ void Ammunition_kb_control(void)
 		{ 
 			if(Control_state.Remote_S1!=2)
 			{
-				Ammunition_State(Control_state.ammunition);				 //·À¶¶ µÃµ½flag
+				Ammunition_State(Control_state.ammunition);				 //é˜²æŠ– å¾—åˆ°flag
 				//get flag
 			}
 			else
@@ -232,7 +232,7 @@ void Ammunition_Process(void)
     Ammunition_GetMoveData();
     Ammunition_CanTransmit();
 		//Chassis.CanData[6]=Control_state.shoot_or_not|(Control_state.block_and_reverse<<1)
-		//can2·´À¡±¨ÎÄIDÎª0x500 ºÍµ×ÅÌÈýÏàËÙ¶ÈÊý¾ÝÒ»Æð·¢ËÍ
+		//can2åé¦ˆæŠ¥æ–‡IDä¸º0x500 å’Œåº•ç›˜ä¸‰ç›¸é€Ÿåº¦æ•°æ®ä¸€èµ·å‘é€
 }	
 
 
