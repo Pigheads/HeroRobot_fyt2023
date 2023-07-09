@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
   * @file
-  * @author  lj
+  * @author  
   * @brief
   * @date
   ******************************************************************************
@@ -60,7 +60,7 @@ void keyboard_state_judge(RemoteData_t RDMsg,HolderData_t HDMsg)
 	Angle_adjust(&Control_state.angle_e,RDMsg.KeyBoard.e);
 	Angle_adjust(&Control_state.angle_z,RDMsg.KeyBoard.z);
 	Angle_adjust(&Control_state.angle_c,RDMsg.KeyBoard.c);
-	//shift开启超级电容
+	//shift偶艦膯么艂殴藕艣木莽膶脻
 //	state_switch(&Control_state.open_cap,RDMsg.KeyBoard.shift);	 
 	 
 	Control_state.direction[0]=RDMsg.KeyBoard.w;
