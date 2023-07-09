@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
   * @file    
-  * @author  sy,lj
+  * @author  ycz,lj
   * @brief
   * @date     
   ******************************************************************************
@@ -19,17 +19,17 @@
   */
 	
 /*
-  1.ÔÆÌ¨¸úËæÄ£Ê½Í£Ö¹Ê±»áÆ«ÒÆ
-  2.µ×ÅÌ²»Ó²£¬²¦µ¯Á¦Ì«´óÊ±»áÓ°Ïìµ×ÅÌ£¨´ı²âÊÔ£©
-  3.Ãé×¼Ä£Ê½×óÓÒÒÆ¶¯²»¾ù
+  1.äº‘å°è·Ÿéšæ¨¡å¼åœæ­¢æ—¶ä¼šåç§»
+  2.åº•ç›˜ä¸ç¡¬ï¼Œæ‹¨å¼¹åŠ›å¤ªå¤§æ—¶ä¼šå½±å“åº•ç›˜ï¼ˆå¾…æµ‹è¯•ï¼‰
+  3.ç„å‡†æ¨¡å¼å·¦å³ç§»åŠ¨ä¸å‡
 	
-	¸Ä½ø·½Ïò£º
-	1.r¼üÃé×¼Ä£Ê½¿ªÆôË²¼ä¼ÇÂ¼µ±Ç°ÔÆÌ¨½Ç¶È×÷ÎªÄ¿±êÖµ£¬¸ÄÎªÁíÒ»Ì×PID¿ØÖÆ£¬Ëø¶¨µ±Ç°½Ç¶ÈÉä»÷£¬Òª×öµ½Éä»÷Ê±·½Ïò²»Æ«£¬Ö÷Òª´òÇ°ÉÚÕ¾ºÍ»ùµØ¡£
-	2.³¢ÊÔ½â¾ö¸úËæÄ£Ê½ÏÂÔÆÌ¨ÄªÃûÆ«ÒÆµÄÎÊÌâ¡£
-	3.µõÉä²âÊÔ£¬»­UI£¬ÒªÓĞÉä±í¡£
-	4.·ÉÆÂ¹¦ÄÜ±àĞ´ºÍ²âÊÔ£¨¸ù¾İÍÓÂİÒÇÆ«½Ç¼ÓËÙ£©¡£
-	5.ÔÚºóĞø²âÊÔÖĞÊ±¿Ì×¢ÒâÓĞÎŞ¿¨µ¯£¬Á¬·¢ÎÊÌâ£¬ËæÊ±¸Ä½ø¡£
-	6.×ÔÃéµÄ¸Ä½ø£¬¸ú×ÙÎÈ¶¨ĞÔºÍ¿É¿ØĞÔ¡£
+	æ”¹è¿›æ–¹å‘ï¼š
+	1.ré”®ç„å‡†æ¨¡å¼å¼€å¯ç¬é—´è®°å½•å½“å‰äº‘å°è§’åº¦ä½œä¸ºç›®æ ‡å€¼ï¼Œæ”¹ä¸ºå¦ä¸€å¥—PIDæ§åˆ¶ï¼Œé”å®šå½“å‰è§’åº¦å°„å‡»ï¼Œè¦åšåˆ°å°„å‡»æ—¶æ–¹å‘ä¸åï¼Œä¸»è¦æ‰“å‰å“¨ç«™å’ŒåŸºåœ°ã€‚
+	2.å°è¯•è§£å†³è·Ÿéšæ¨¡å¼ä¸‹äº‘å°è«ååç§»çš„é—®é¢˜ã€‚
+	3.åŠå°„æµ‹è¯•ï¼Œç”»UIï¼Œè¦æœ‰å°„è¡¨ã€‚
+	4.é£å¡åŠŸèƒ½ç¼–å†™å’Œæµ‹è¯•ï¼ˆæ ¹æ®é™€èºä»ªåè§’åŠ é€Ÿï¼‰ã€‚
+	5.åœ¨åç»­æµ‹è¯•ä¸­æ—¶åˆ»æ³¨æ„æœ‰æ— å¡å¼¹ï¼Œè¿å‘é—®é¢˜ï¼Œéšæ—¶æ”¹è¿›ã€‚
+	6.è‡ªç„çš„æ”¹è¿›ï¼Œè·Ÿè¸ªç¨³å®šæ€§å’Œå¯æ§æ€§ã€‚
 	
 */
 
@@ -53,9 +53,9 @@ int16_t pitch_y=0;
 int16_t pitch_x=0;
 int16_t Aim_Angle_Yaw=0;
 int16_t Aim_Angle_Pitch=0;
-float temp_kp_p[4]={0.26,0.26,0.26,0.27};//¸©ÑöÈı¶ÎÊ½0.35,0.35,0.36,0.37  0.1,0.09,0.08,0.08 0.09,0.08,0.06,0.06  0.09,0.08,0.1,0.1
+float temp_kp_p[4]={0.26,0.26,0.26,0.27};//ä¿¯ä»°ä¸‰æ®µå¼0.35,0.35,0.36,0.37  0.1,0.09,0.08,0.08 0.09,0.08,0.06,0.06  0.09,0.08,0.1,0.1
 float temp_err_p[4]={10,50,100,270};
-float temp_kp_y[4]={0.72,0.74,0.76,0.74};//Æ«º½Èı¶ÎÊ½ 2,2,2.4,2.5//0.65,0.75,0.75,0.6//0.7,0.7,0.8,0.7
+float temp_kp_y[4]={0.72,0.74,0.76,0.74};//åèˆªä¸‰æ®µå¼ 2,2,2.4,2.5//0.65,0.75,0.75,0.6//0.7,0.7,0.8,0.7
 float temp_err_y[4]={5,10,23,90};							//0,7,23,90
 float debuger_kp=190,debuger_ki=1.65,debuger_kd=135;
 /* function ------------------------------------------------------------------*/
@@ -67,12 +67,12 @@ void Holder_PidInit(void)
 {
 //pid_init_increment(&Holder.Pitch.PIDSpeed,715,109,667,30000,30000);//648,35,160,30000,30000 758,95,690,30000,30000
 //pid_init_antiintegral(&Holder.Yaw.PidSpeed,debuger_kp,debuger_ki,debuger_kd,30000,20000,20);//1368,55,1980,30000,20000,20
-//	pid_init_absolute(&Holder.Yaw.PidSpeed, 25.0, 0.0, 1, 9999);		//errlim²»Îª0 Ò×µ¼ÖÂÎÈÌ¬Îó²î
+//	pid_init_absolute(&Holder.Yaw.PidSpeed, 25.0, 0.0, 1, 9999);		//errlimä¸ä¸º0 æ˜“å¯¼è‡´ç¨³æ€è¯¯å·®
 	pid_init_absolute_threesection(&Holder.Yaw.PIDAngle,temp_kp_y,temp_err_y,0.001,0.01,4,30000);//kp[3],err[3],ki,kd,I_Limit,Out_Limit	
 	pid_init_antiintegral(&Holder.Yaw.PidSpeed,98,0.57,989,30000,25000,20);//944,33.7,1160,21000,25000,15//340,0.4,1100,30000,30000,20//1368,55,1980,30000,20000,20	
 	
 	
-	// ¸©Ñö³õÊ¼»¯ 
+	// ä¿¯ä»°åˆå§‹åŒ– 
 	pid_init_absolute_threesection(&Holder.Pitch.PIDAngle,temp_kp_p,temp_err_p,0,0.08,0,30000);//0,0.001,2,30000
 //	pid_init_increment(&Holder.Pitch.PIDSpeed,688,0.5,668,30000,30000);
 	pid_init_absolute(&Holder.Pitch.PIDSPEED,debuger_kp,debuger_ki,debuger_kd,30000);
@@ -91,12 +91,12 @@ void Holder_PidRun(void)
 {
 //	static uint8_t ticks = 0;
 //	ticks++;
-//	//Æ«º½
+//	//åèˆª
 //	
 //	if(ticks == 5)
 //	{
 //		ticks=0;
-		Holder.Yaw._0x209.TarSpeed=(int16_t)pid_absolute_threesection_update(Holder.Yaw._0x209.TarAngleLpf,Holder.Yaw.Rx.Angle,&Holder.Yaw.PIDAngle); //Èı¶Î¾ø¶ÔÊ½½Ç¶È»·	
+		Holder.Yaw._0x209.TarSpeed=(int16_t)pid_absolute_threesection_update(Holder.Yaw._0x209.TarAngleLpf,Holder.Yaw.Rx.Angle,&Holder.Yaw.PIDAngle); //ä¸‰æ®µç»å¯¹å¼è§’åº¦ç¯	
 //	}
 	Holder.Yaw._0x209.Output=(int16_t)pid_antiintegral_update(Holder.Yaw._0x209.TarSpeed,Holder.Yaw.Rx.Speed,&Holder.Yaw.PidSpeed);	
 
@@ -105,7 +105,7 @@ void Holder_PidRun(void)
 	YawRxSpeed = Holder.Yaw.Rx.Speed;
 	YawTarAngle = Holder.Yaw._0x209.TarAngleLpf;
 	YawRxAngle = Holder.Yaw.Rx.Angle;
-	//¸©Ñö
+	//ä¿¯ä»°
 //	if(ticks == 5)
 //	{
 //		ticks=0;
@@ -153,7 +153,7 @@ void Holder_LPfIn(void)
 int vision_y;
 void Holder_re_control(RemoteData_t RDMsg)
 {
-	/* ÊÓ¾õ¿ØÖÆËã·¨ */
+	/* è§†è§‰æ§åˆ¶ç®—æ³• */
 //	Holder.Yaw._0x209.TarAngle    = Holder.Yaw.Rx.Angle + 1.0*vData.Pos.y;
 //	if(vData.Pos.y <= 5 && vData.Pos.y >= -5)
 //		Holder.Yaw._0x209.TarAngle    = Holder.Yaw._0x209.TarAngle + 0.2*vData.Pos.y;
@@ -162,7 +162,7 @@ void Holder_re_control(RemoteData_t RDMsg)
 ////	vision_y = vData.Pos.y;
 //	pitch_y += 0.5*vData.Pos.x;	
 //	
-	/* Ò£¿ØÆ÷¿ØÖÆËã·¨ */
+	/* é¥æ§å™¨æ§åˆ¶ç®—æ³• */
 
     Holder.Yaw._0x209.TarAngle  -= 0.010*RDMsg.Ch0;
 		pitch_y +=0.010*RDMsg.Ch1;
@@ -218,7 +218,7 @@ void Holder_GetMoveData(RemoteData_t RDMsg,HolderData_t HDMsg)
 	   Holder.Pitch.gyoSpeed = HDMsg.PxSpeed;
 	   Holder.Pitch.gyoAngle = HDMsg.PxAngle;
 	
-//kalmanÂË²¨Ô¤²â
+//kalmanæ»¤æ³¢é¢„æµ‹
 //	 Holder_CoordinateTransform();
 //	 vision_predict();
 	
@@ -250,9 +250,9 @@ void Holder_CanTransmit(void)
 {
 	if(Observer.Tx.DR16_Rate>15)
 	{
-		 Holder.Yaw.CanData[0]   =   (uint8_t)(Holder.Yaw ._0x209.OutputLpf>>8);         //ÔÆÌ¨½âËãµÄÆ«º½Êä³öÖµ×ª·¢¸øµ×ÅÌ
+		 Holder.Yaw.CanData[0]   =   (uint8_t)(Holder.Yaw ._0x209.OutputLpf>>8);         //äº‘å°è§£ç®—çš„åèˆªè¾“å‡ºå€¼è½¬å‘ç»™åº•ç›˜
 		 Holder.Yaw.CanData[1]   =   (uint8_t)(Holder.Yaw ._0x209.OutputLpf);
-		 Holder.Yaw.CanData[6]   =   (uint8_t)(Control_state.Remote_Wheel>>8)	;	         //Ò£¿ØÆ÷»¬ÂÖ  
+		 Holder.Yaw.CanData[6]   =   (uint8_t)(Control_state.Remote_Wheel>>8)	;	         //é¥æ§å™¨æ»‘è½®  
 		 Holder.Yaw.CanData[7]   =   (uint8_t)(Control_state.Remote_Wheel)	;
 		 Holder.Pitch.CanData[0] =   (uint8_t)((Holder.Pitch._0x20A.OutputLpf)>>8);
 		 Holder.Pitch.CanData[1] =   (uint8_t)(Holder.Pitch._0x20A.OutputLpf);
