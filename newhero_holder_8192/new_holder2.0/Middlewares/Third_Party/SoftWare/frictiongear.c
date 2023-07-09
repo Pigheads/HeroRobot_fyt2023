@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
   * @file    
-  * @author  sy£¬lj
+  * @author  yczï¼Œlj
   * @brief
   * @date     
   ******************************************************************************
@@ -52,7 +52,7 @@ void Friction_re_control(void)
 {
 		 switch(Control_state.Remote_S2)
 		  {					
-			  case 1:                                                //Ä¦²ÁÂÖ²»×ª
+			  case 1:                                                //æ‘©æ“¦è½®ä¸è½¬
 					 Frictiongear ._0x201.TarSpeed=0;
 					 Frictiongear ._0x202.TarSpeed=0;
 				   Control_state.Shootpermit=0;
@@ -188,15 +188,15 @@ void Frictiongear_GetMoveData(void)
 		  }
 			if(Frictiongear._0x202.Rx.Speed<0.90*Frictiongear ._0x202.TarSpeed&&Frictiongear ._0x202.TarSpeed>1000)	
 			{
-				//ÒòÎªÏÖÔÚÄ¦²ÁÂÖµÄ202¸øµÄËÙ¶ÈÊÇÕıµÄ 201ÊÇ¸ºµÄ ËùÒÔÕâÀï±È½Ï202µÄËÙ¶È 
-				//¾ßÌåÒª¸ù¾İÊµ¼ÊÄ¦²ÁÂÖµÄ°²×°µ÷Õû
-				//¼ì²âµ½·¢µ¯ µ¥·¢±êÖ¾Î»ÖÃ1
+				//å› ä¸ºç°åœ¨æ‘©æ“¦è½®çš„202ç»™çš„é€Ÿåº¦æ˜¯æ­£çš„ 201æ˜¯è´Ÿçš„ æ‰€ä»¥è¿™é‡Œæ¯”è¾ƒ202çš„é€Ÿåº¦ 
+				//å…·ä½“è¦æ ¹æ®å®é™…æ‘©æ“¦è½®çš„å®‰è£…è°ƒæ•´
+				//æ£€æµ‹åˆ°å‘å¼¹ å•å‘æ ‡å¿—ä½ç½®1
 				Control_state.SingleShoot = 1;
 				flag=0;
 			}
 			if(Control_state.SingleShoot==1&&Frictiongear._0x202.Rx.Speed>=0.95*Frictiongear ._0x202.TarSpeed)
 			{	
-				//ÒÑµ¥·¢¹ı ÇÒÄ¦²ÁÂÖËÙ¶È»Ö¸´ ¿ÉÒÔ¼ÌĞøµ¥·¢
+				//å·²å•å‘è¿‡ ä¸”æ‘©æ“¦è½®é€Ÿåº¦æ¢å¤ å¯ä»¥ç»§ç»­å•å‘
         Control_state.SingleShoot = 0;
 			}
 }
