@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
   * @file    
-  * @author  lj
+  * @author  
   * @brief   
   * @date     
   ******************************************************************************
@@ -77,7 +77,7 @@ typedef struct _robot_state_t
 	switchable_t angle_z;
 	switchable_t angle_c;
 	switchable_t angle_f;
-	//超级电容开启标志位
+	//瓒呯骇鐢靛寮�鍚爣蹇椾綅
 	switchable_t open_cap;
 	
 	uint8_t Remote_S1;
@@ -86,7 +86,7 @@ typedef struct _robot_state_t
 	int16_t Remote_Wheel;
 	uint8_t block_and_reverse;
 	uint8_t Stop_reverse;
-	uint8_t shoot_or_not;                     //是否允许底盘发弹的标志位
+	uint8_t shoot_or_not;                     //鏄惁鍏佽搴曠洏鍙戝脊鐨勬爣蹇椾綅
 }state_t;
 
 /* define --------------------------------------------------------------------*/
