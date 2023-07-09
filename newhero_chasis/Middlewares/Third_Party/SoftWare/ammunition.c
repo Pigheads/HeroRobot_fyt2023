@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
   * @file    
-  * @author  sy£¬lj
+  * @author  yczï¼Œlj
   * @brief
   * @date     
   ******************************************************************************
@@ -179,7 +179,7 @@ void Ammunition_kb_control(void)
 //   if((Control_state.HeatPermit==0)&&(Control_state.ShootBlock==0))
 	if(Control_state.ShootBlock==0)
 	 {
-			if(Control_state.Remote_S1!=2)	//¼üÊó¿ØÖÆ Êó±ê×ó¼ü
+			if(Control_state.Remote_S1!=2)	//é”®é¼ æŽ§åˆ¶ é¼ æ ‡å·¦é”®
 			{
 			 Ammunition_State(Control_state.ammunition);
 			 if(flag==1)
@@ -188,7 +188,7 @@ void Ammunition_kb_control(void)
 				 Ammunition_protect();
 			}
 			else 
-			{																//Ò£¿ØÆ÷
+			{																//é¥æŽ§å™¨
 			 Ammunition_State(Control_state.Remote_Wheel>=330||Control_state.Remote_Wheel<=-330);
 			 if(flag==1)
 				 Ammunition.TarSpeed = Speed_Fix;
@@ -281,9 +281,9 @@ void Ammunition_CanTransmit(void)
 
 void Ammunition_Process(void)
 {
-	  HeatControl();						//ÈÈÁ¿¿ØÖÆ
-	  Shootblock_detection();		//¿¨µ¯±£»¤ 
-	  ShootEmpty_detection();		//´ò¿Õ±£»¤ 
+	  HeatControl();						//çƒ­é‡æŽ§åˆ¶
+	  Shootblock_detection();		//å¡å¼¹ä¿æŠ¤ 
+	  ShootEmpty_detection();		//æ‰“ç©ºä¿æŠ¤ 
 	  Ammunition_LPfIn();
     Ammunition_GetMoveData();
 		if(Observer.Tx.DR16_Rate>15&&(Control_state.HeatPermit==0)&&flag==1)
